@@ -135,7 +135,7 @@ class APIReferenceLoader(WebBaseLoader):
         """
         options = Options()
         options.headless = True
-        options.binary_location = '/Applications/Firefox.app/Contents/MacOS/firefox'
+        options.binary = FirefoxBinary("/usr/bin/firefox")
         service = FirefoxService(executable_path="geckodriver")
         driver = webdriver.Firefox(service=service, options=options)
         return driver
