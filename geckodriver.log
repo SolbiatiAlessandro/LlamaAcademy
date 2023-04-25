@@ -1,0 +1,19 @@
+1682234852916	geckodriver	INFO	Listening on 127.0.0.1:62837
+1682306032341	geckodriver	INFO	Listening on 127.0.0.1:62267
+1682306828961	geckodriver	INFO	Listening on 127.0.0.1:65009
+1682307198294	geckodriver	INFO	Listening on 127.0.0.1:49306
+1682307198868	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" MOZ_NO_REMOTE="1" "/App ... s" "localhost" "-foreground" "-no-remote" "-profile" "/var/folders/tf/y849t12x7lgbphx4xvq28g340000gn/T/rust_mozprofile8h3bok"
+*** You are running in headless mode.
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1682307199381	Marionette	INFO	Marionette enabled
+1682307199602	Marionette	INFO	Listening on port 49331
+console.error: "Warning: unrecognized command line flag -remote-allow-hosts\n"
+Read port: 49331
+WebDriver BiDi listening on ws://127.0.0.1:49307
+1682307199666	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /var/folders/tf/y849t12x7lgbphx4xvq28g340000gn/T/rust_mozprofile8h3bok/search.json.mozlz4", (void 0)))
+[ERROR glean_core] Error setting metrics feature config: Json(Error("EOF while parsing a value", line: 1, column: 0))
+DevTools listening on ws://127.0.0.1:49307/devtools/browser/0c212dcc-69ab-4859-a984-4ff4c0faca83
+1682307273427	Marionette	INFO	Stopped listening on port 49331

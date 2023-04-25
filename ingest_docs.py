@@ -1,5 +1,7 @@
 """Load html from files, clean up, split, ingest into FAISS."""
 import pickle
+import argparse
+from omegaconf import OmegaConf
 from typing import Any, List, Optional, Tuple
 from langchain.docstore.document import Document
 from langchain.document_loaders import WebBaseLoader
@@ -133,7 +135,7 @@ class APIReferenceLoader(WebBaseLoader):
         """
         options = Options()
         options.headless = True
-        options.binary = FirefoxBinary("/usr/bin/firefox")
+        options.binary_location = '/Applications/Firefox.app/Contents/MacOS/firefox'
         service = FirefoxService(executable_path="geckodriver")
         driver = webdriver.Firefox(service=service, options=options)
         return driver
@@ -305,6 +307,29 @@ def ingest_docs(url_docs: str, recursive_depth: int = 1, return_summary: bool = 
         pickle.dump(vectorstore, f)
 
     return documents, docs_for_summary
+
+
+def task():
+    def args_parse():
+        parser = argparse.ArgumentParser()
+        parser.add_argument("--config", type=str, default="config.yaml")
+        parser.add_argument("--local_rank", type=int, default=0)
+        return parser.parse_args()
+
+    import logging
+    args = args_parse()
+    cfg = OmegaConf.load(os.path.abspath(args.config))
+    logger = logging.getLogger(__name__)
+    docs, docs_for_summary = ingest_docs(cfg.API_DOCS, recursive_depth=cfg.DEPTH_CRAWLING, logger=logger)
+    embeddings = OpenAIEmbeddings()
+    vectorstore = FAISS.from_documents(docs, embeddings)
+    with open("assets/vectorstore_debug.pkl", "wb") as f:
+        pickle.dump(vectorstore, f)
+    with open("assets/docs.pkl", "wb") as f:
+        pickle.dump(docs, f)
+    with open("assets/docs_for_summary.pkl", "wb") as f:
+        pickle.dump(docs_for_summary, f)
+
 
 if __name__ == "__main__":
     import logging
