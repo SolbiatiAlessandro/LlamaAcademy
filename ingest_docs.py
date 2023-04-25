@@ -332,11 +332,4 @@ def task():
 
 
 if __name__ == "__main__":
-    import logging
-    logger = logging.getLogger(__name__)
-    docs, docs_for_summary = ingest_docs("https://developers.notion.com/reference/create-a-token", recursive_depth=0, logger=logger)
-    embeddings = OpenAIEmbeddings()
-    vectorstore = FAISS.from_documents(docs, embeddings)
-    with open("assets/vectorstore_debug.pkl", "wb") as f:
-        pickle.dump(vectorstore, f)
-    
+    task()
